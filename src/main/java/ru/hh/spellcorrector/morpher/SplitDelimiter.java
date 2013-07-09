@@ -42,6 +42,8 @@ class SplitDelimiter extends Morpher {
     List<String> spaces = Lists.newArrayList();
     List<String> words = Lists.newArrayList();
 
+    boolean spaceLast = false;
+
     PeekingIterator<Character> characterIt = Iterators.peekingIterator(Lists.charactersOf(source).iterator());
     while (characterIt.hasNext()) {
       StringBuilder space = new StringBuilder();
@@ -50,18 +52,27 @@ class SplitDelimiter extends Morpher {
       }
       spaces.add(space.toString());
 
+      spaceLast = true;
+
       StringBuilder word = new StringBuilder();
       while (characterIt.hasNext() && !DELIMITERS.contains(characterIt.peek())) {
         word.append(characterIt.next());
       }
-      words.add(word.toString());
+
+      String builded = word.toString();
+      if (!builded.equals("")) {
+        words.add(word.toString());
+        spaceLast = false;
+      }
     }
 
-    StringBuilder space = new StringBuilder();
-    while (characterIt.hasNext() && DELIMITERS.contains(characterIt.peek())) {
-      space.append(characterIt.next());
+    if (!spaceLast) {
+      StringBuilder space = new StringBuilder();
+      while (characterIt.hasNext() && DELIMITERS.contains(characterIt.peek())) {
+        space.append(characterIt.next());
+      }
+      spaces.add(space.toString());
     }
-    spaces.add(space.toString());
 
     return Phrase.of(words, spaces);
   }

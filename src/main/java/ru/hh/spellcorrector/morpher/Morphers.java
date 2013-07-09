@@ -5,6 +5,7 @@ import ru.hh.spellcorrector.dict.Dictionary;
 import ru.hh.spellcorrector.TreeNode;
 import java.util.Set;
 import static java.util.Arrays.asList;
+import static ru.hh.spellcorrector.TreeNode.leaf;
 import static ru.hh.spellcorrector.morpher.Charsets.ENG;
 import static ru.hh.spellcorrector.morpher.Charsets.RUS;
 import static ru.hh.spellcorrector.TreeNode.node;
@@ -23,12 +24,13 @@ public class Morphers {
   }
 
   public static Morpher cutDoubleSteps() {
+    Morpher delete = delete(4);
     return tree(node(splitDelimiter(),
-        node(delete(), delete(), transpose(), replace(), insert(), split()),
-        node(transpose(), transpose(), replace(), insert(), split()),
-        node(replace(),split()),
-        node(insert(), split()),
-        node(charset(), delete(), transpose(), replace(), insert(), split()),
+        node(delete, delete, transpose(), replace(), insert()),
+        node(transpose(), transpose(), replace(), insert()),
+        leaf(replace()),
+        leaf(insert()),
+        node(charset(), delete, transpose(), replace(), insert(), split()),
         node(split(), charset(), split()))
     );
   }
@@ -38,7 +40,11 @@ public class Morphers {
   }
 
   public static Morpher delete() {
-    return Delete.instance();
+    return new Delete(1);
+  }
+
+  public static Morpher delete(int threshold) {
+    return new Delete(threshold);
   }
 
   public static Morpher transpose() {

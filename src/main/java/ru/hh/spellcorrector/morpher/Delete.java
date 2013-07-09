@@ -7,18 +7,15 @@ import java.util.Iterator;
 
 class Delete extends StringTransform {
 
-  private static final Morpher INSTANCE = new Delete();
+  private final int threshold;
 
-  private Delete() {
-  }
-
-  static Morpher instance() {
-    return INSTANCE;
+  Delete(int threshold) {
+    this.threshold = threshold;
   }
 
   @Override
   protected Iterable<String> variants(final String source) {
-    if (source.length() <= 1) {
+    if (source.length() <= threshold) {
       return Collections.emptyList();
     }
     return new Iterable<String>() {

@@ -24,6 +24,8 @@ public class CorrektorTest {
       "менеджер|11.8\n" +
       "эхолот|5.32\n" +
       "юбилей|1.13\n" +
+      "ключевых|1.13\n" +
+      "клиентов|1.13\n" +
       "sales|12.4\n" +
       "marketing|18.2\n" +
       "test|10000.0\n";
@@ -96,6 +98,7 @@ public class CorrektorTest {
     assertCorrection("vtytl;th", "менеджер");
     assertCorrection("'[jkjn", "эхолот");
     assertCorrection(".,bktq", "юбилей");
+    assertCorrection("vtytl;th rk.xtds[ rkbtynjd", "менеджер ключевых клиентов");
   }
 
   public void assertCorrection(String source, String correction) {
