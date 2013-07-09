@@ -23,7 +23,7 @@ public class CorrektorService {
   private static final Logger logger = LoggerFactory.getLogger(CorrektorService.class);
 
   private static final Joiner JOINER = Joiner.on(" ");
-  private static final Pattern PATTERN = Pattern.compile("[\\w|\\p{InCyrillic}|']+");
+  private static final Pattern PATTERN = Pattern.compile("[\\w\\[\\]{};':\",\\.<>\\p{InCyrillic}]+");
 
   private int lowBound = 0;
   private int highBound = 0;
@@ -59,9 +59,7 @@ public class CorrektorService {
   public NigmerDto correct(String input) {
     logger.info("Start correcting \"{}\"", input);
     long startTime = System.currentTimeMillis();
-
     Matcher matcher = PATTERN.matcher(input);
-
     NigmerDto result = new NigmerDto();
 
     int lastMatch = 0;
@@ -74,8 +72,17 @@ public class CorrektorService {
       String normalized = original.toLowerCase();
       String correction = correctWord(normalized);
 
+      boolean corrected = !normalized.equals(correction);
+      result.word.add(
+          corrected ?
+              correction(text, state.apply(correction), normalized) :
+              text(text + original));
       lastMatch =  matcher.end();
-      result.word.add(normalized.equals(correction) ? text(text + original) : correction(text, state.apply(correction), normalized));
+    }
+
+    String text = input.substring(lastMatch);
+    if (!text.equals("")) {
+      result.word.add(text(text));
     }
 
     long time = System.currentTimeMillis() - startTime;
@@ -92,7 +99,7 @@ public class CorrektorService {
     Correction source = Correction.of(Phrase.of(word), 1.0);
     final Iterable<Correction> corrections = concat(asList(Correction.of(Phrase.of(word), 0.0)), lang.corrections(morpher.corrections(source)));
     Correction correction = WEIGHT.max(corrections);
-    return JOINER.join(correction.getPhrase().getWords());
+    return correction.getPhrase().join();
   }
 
 }

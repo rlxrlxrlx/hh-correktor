@@ -12,7 +12,7 @@ import static ru.hh.spellcorrector.TreeNode.node;
 public class Morphers {
 
   public static Morpher fullDoubleSteps() {
-    return tree(node(identity(),
+    return tree(node(splitDelimiter(),
         node(delete(), delete(), transpose(), replace(), insert(), split()),
         node(transpose(), transpose(), replace(), insert(), split()),
         node(replace(), replace(), insert(), split()),
@@ -23,7 +23,7 @@ public class Morphers {
   }
 
   public static Morpher cutDoubleSteps() {
-    return tree(node(identity(),
+    return tree(node(splitDelimiter(),
         node(delete(), delete(), transpose(), replace(), insert(), split()),
         node(transpose(), transpose(), replace(), insert(), split()),
         node(replace(),split()),
@@ -116,5 +116,9 @@ public class Morphers {
 
   public static Morpher identity() {
     return Identity.instance();
+  }
+
+  public static Morpher splitDelimiter() {
+    return SplitDelimiter.instance();
   }
 }

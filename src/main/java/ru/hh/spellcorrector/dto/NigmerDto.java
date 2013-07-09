@@ -12,4 +12,17 @@ public class NigmerDto {
   @XmlElement
   public List<WordDto> word = Lists.newArrayList();
 
+  public String toCorrection() {
+    StringBuilder builder = new StringBuilder();
+    for (WordDto w: word) {
+      if (w.text != null) {
+        builder.append(w.text);
+      }
+      if (w.correction != null) {
+        builder.append(w.correction.variant);
+      }
+    }
+    return builder.toString();
+  }
+
 }

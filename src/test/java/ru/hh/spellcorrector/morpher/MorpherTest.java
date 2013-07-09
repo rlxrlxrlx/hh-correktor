@@ -126,8 +126,12 @@ public class MorpherTest {
         .toSet();
   }
 
-  public static Phrase phrase(String... words) {
-    return Phrase.of(asList(words));
+  public static Phrase phrase(String word) {
+    return Phrase.of(word);
+  }
+
+  public static Phrase phrase(String left, String right) {
+    return Phrase.of(asList(left, right), asList("", " ", ""));
   }
 
   public static Set<Phrase> set(Phrase... phrases) {

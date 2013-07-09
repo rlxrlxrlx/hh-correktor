@@ -1,11 +1,8 @@
 package ru.hh.spellcorrector.morpher;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,32 +27,6 @@ class Keyboard extends StringTransform {
 
     TO_RUS = ImmutableMap.copyOf(toRus);
     TO_ENG = ImmutableMap.copyOf(toEng);
-  }
-
-  private static String fromList(List<Character> chars) {
-    char[] res = new char[chars.size()];
-    for (int i = 0; i < res.length; i++) {
-      res[i] = chars.get(i);
-    }
-    return new String(res);
-  }
-
-  boolean check(String source, Map<Character, Character> map) {
-    for (Character ch : Lists.charactersOf(source)) {
-      if (map.containsKey(ch)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  public Function<Character, Character> replaceFunc(final Map<Character, Character> map) {
-    return new Function<Character, Character>() {
-      @Override
-      public Character apply(Character input) {
-        return map.containsKey(input) ? map.get(input) : input;
-      }
-    };
   }
 
   public String toAnotherCharset(String from, Map<Character, Character> transform) {
