@@ -1,3 +1,9 @@
+hh-correktor (1.1) unstable; urgency=low
+
+  * Fix charset morphing + new dictionary
+
+ -- Georgiy Danschin <g.danschin@hh.ru>  Wed, 10 Jul 2013 12:59:33 +0400
+
 hh-correktor (1.0) unstable; urgency=low
 
   * Initial release
