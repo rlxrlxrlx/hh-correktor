@@ -1,3 +1,9 @@
+hh-correktor (1.1.1) unstable; urgency=low
+
+  * HH-37921 added russian headhunter spelling
+
+ -- Dmitrij Chekmarev <d.chekmarev@hh.ru>  Tue, 15 Oct 2013 14:11:51 +0400
+
 hh-correktor (1.1) unstable; urgency=low
 
   * Fix charset morphing + new dictionary
