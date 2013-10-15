@@ -1,6 +1,12 @@
-hh-correktor (1.1.1) unstable; urgency=low
+hh-correktor (1.1.2) unstable; urgency=low
 
   * HH-37921 added russian headhunter spelling
+
+ -- Dmitrij Chekmarev <d.chekmarev@hh.ru>  Tue, 15 Oct 2013 16:35:40 +0400
+
+hh-correktor (1.1.1) unstable; urgency=low
+
+  * HH-37921 added russian headhunter spelling *broken*
 
  -- Dmitrij Chekmarev <d.chekmarev@hh.ru>  Tue, 15 Oct 2013 14:11:51 +0400
 
