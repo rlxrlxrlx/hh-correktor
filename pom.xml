@@ -10,7 +10,7 @@
 
     <groupId>ru.hh.correktor</groupId>
     <artifactId>correktor</artifactId>
-    <version>1.1.4</version>
+    <version>1.1.5-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
