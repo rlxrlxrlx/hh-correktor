@@ -1,3 +1,9 @@
+hh-correktor (1.1.4) unstable; urgency=low
+
+  * HH-49655 remove misspell from corrections dictionary
+
+ -- Automated Build <g.danschin@hh.ru>  Tue, 03 Feb 2015 13:11:22 +0300
+
 hh-correktor (1.1.3) unstable; urgency=low
 
   * HH-41815 proper correction for misspell 'помошник'
