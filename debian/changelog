@@ -1,3 +1,9 @@
+hh-correktor (1.1.5) unstable; urgency=low
+
+  * HH-39628 fix another misspelling
+
+ -- Automated Build <g.danschin@hh.ru>  Mon, 16 Mar 2015 18:17:07 +0300
+
 hh-correktor (1.1.4) unstable; urgency=low
 
   * HH-49655 remove misspell from corrections dictionary
